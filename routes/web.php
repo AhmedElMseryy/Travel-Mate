@@ -1,15 +1,17 @@
 <?php
 
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminReservationController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\ReservationController;
-use App\Models\Reservation;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -27,8 +29,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 // });
 
 
-Route::resource('reservations', ReservationController::class);
-##************************************************** FRONT ROUTES
+#--------------------------------------------------------------------------
+#------------------------------ FRONT ROUTES ------------------------------
+#--------------------------------------------------------------------------
+Route::resource('reservations', ReservationController::class)->middleware('auth');
+
 Route::name('front.')->controller(FrontController::class)->group(function () {
     //============================== HOME PAGE
     Route::post('subscriber/store', 'subscriberStore')->name('subscriber.store');
@@ -41,7 +46,9 @@ Route::name('front.')->controller(FrontController::class)->group(function () {
     Route::get('/destination', 'destination')->name('destination');
 
     //============================== Reservation Submit 
-    Route::post('/reservation', 'reservation')->name('reservation.submit');
+    Route::post('/reservation', 'reservation')
+        ->name('reservation.submit')
+        ->middleware('auth');
 
     //============================== CONTACT PAGE
     Route::post('contact/store', 'contactStore')->name('contact.store');
@@ -49,7 +56,10 @@ Route::name('front.')->controller(FrontController::class)->group(function () {
 });
 require __DIR__ . '/auth.php';
 
-##************************************************** ADMIN ROUTES
+
+#--------------------------------------------------------------------------
+#------------------------------ ADMIN ROUTES ------------------------------
+#--------------------------------------------------------------------------
 Route::name('admin.')->prefix(LaravelLocalization::setLocale() . '/admin')->middleware(
     'localeSessionRedirect',
     'localizationRedirect',
@@ -79,6 +89,14 @@ Route::name('admin.')->prefix(LaravelLocalization::setLocale() . '/admin')->midd
         //============================== ABOUT SECTION
         Route::controller(AboutController::class)->group(function () {
             Route::resource('about', AboutController::class)->only(['index', 'edit', 'update']);
+        });
+        //============================== RESERVATIONS SECTION
+        Route::controller(AdminReservationController::class)->group(function () {
+            Route::resource('reservations', AdminReservationController::class)->only(['index', 'destroy']);
+        });
+        //============================== SETTINGS
+        Route::controller(SettingController::class)->group(function () {
+            Route::resource('settings', SettingController::class)->only(['index', 'update']);
         });
     });
     require __DIR__ . '/adminAuth.php';

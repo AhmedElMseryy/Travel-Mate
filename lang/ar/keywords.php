@@ -19,6 +19,7 @@ return [
     'add_new_destination' => 'اضافه واجهه جديدة',
     'edit_destinations' => 'تعديل الوجهات',
     'destinations' => 'الوجهات السياحية',
+    'reservations' => 'الحجوزات',
     'price' => 'السعر',
     'date' => 'التاريخ',
     'profile' => 'الملف الشخصى',
@@ -93,4 +94,6 @@ return [
     'phone' => 'الهاتف',
     'youtube' => 'يوتيوب',
     'instagram' => 'إنستغرام',
+    'Github' => 'جيت هاب',
+    'Google' => 'جوجل',
 ];

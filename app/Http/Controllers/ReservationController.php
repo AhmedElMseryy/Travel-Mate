@@ -13,12 +13,6 @@ class ReservationController extends Controller
     #=============================== INDEX
     public function index()
     {
-        $user_id = Auth::user()->id;
-        $reservations = Reservation::where('user_id', $user_id)
-            ->with('destination')
-            ->get();
-
-        // dd($reservations->first()->destination->name);
         return view('front.show', get_defined_vars());
     }
 
@@ -60,6 +54,6 @@ class ReservationController extends Controller
     public function destroy(Reservation $reservation)
     {
         $reservation->delete();
-        return to_route('reservations.index')->with('delete_success', 'Deleted Successfully');
+        return to_route('admin.reservations.index')->with('delete_success', 'Deleted Successfully');
     }
 }

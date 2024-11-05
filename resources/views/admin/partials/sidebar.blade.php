@@ -61,9 +61,12 @@
                 name="{{ __('keywords.about') }}"></x-sidebar-tab>
 
             <!-- User Reservation -->
-            {{-- <x-sidebar-tab href="{{ route('admin.about.index') }}" icon="fe-info"
-                name="{{ __('keywords.about') }}"></x-sidebar-tab> --}}
+            <x-sidebar-tab href="{{ route('admin.reservations.index') }}" icon="fe-book"
+                name="{{ __('keywords.reservations') }}"></x-sidebar-tab>
 
+            <!-- Settings Section -->
+            <x-sidebar-tab href="{{ route('admin.settings.index') }}" icon="fe-settings"
+                name="{{ __('keywords.settings') }}"></x-sidebar-tab>
 
         </ul>
 

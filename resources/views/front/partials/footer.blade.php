@@ -68,16 +68,35 @@
                     </div>
                     <div class="columns-2 mt-lg-0 mt-3">
                         <ul class="social">
-                            <li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-                            </li>
-                            <li><a href="#linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-                            </li>
-                            <li><a href="#twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-                            </li>
-                            <li><a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
-                            </li>
-                            <li><a href="#github"><span class="fa fa-github" aria-hidden="true"></span></a>
-                            </li>
+                            @if ($settings->facebook)
+                                <li><a href="{{ $settings->facebook }}"><span class="fa fa-facebook"
+                                            aria-hidden="true"></span></a>
+                                </li>
+                            @endif
+
+                            @if ($settings->linkedin)
+                                <li><a href="{{ $settings->linkedin }}"><span class="fa fa-linkedin"
+                                            aria-hidden="true"></span></a>
+                                </li>
+                            @endif
+
+                            @if ($settings->twitter)
+                                <li><a href="{{ $settings->twitter }}"><span class="fa fa-twitter"
+                                            aria-hidden="true"></span></a>
+                                </li>
+                            @endif
+
+                            @if ($settings->Google)
+                                <li><a href="{{ $settings->Google }}"><span class="fa fa-google-plus"
+                                            aria-hidden="true"></span></a>
+                                </li>
+                            @endif
+
+                            @if ($settings->Github)
+                                <li><a href="{{ $settings->Github }}"><span class="fa fa-github"
+                                            aria-hidden="true"></span></a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>

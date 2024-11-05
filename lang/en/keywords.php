@@ -19,6 +19,7 @@ return [
     'add_new_destination' => 'Add New Destination',
     'edit_destinations' => 'Edit Destinations',
     'destinations' => 'Destinations',
+    'reservations' => 'Reservations',
     'price' => 'Price',
     'date' => 'Date',
     'profile' => 'Profile',
@@ -90,6 +91,8 @@ return [
     //Settings page 
     'settings' => 'Settings',
     'address' => 'Address',
+    'Github' => 'Github',
+    'Google' => 'Google',
     'phone' => 'Phone',
     'youtube' => 'Youtube',
     'instagram' => 'Instagram',
