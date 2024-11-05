@@ -1,0 +1,52 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ rootNamespace }}Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class {{ class }} extends Controller
+{
+    
+    #=============================== INDEX
+    public function index()
+    {
+        //
+    }
+
+    #=============================== CREATE
+    public function create()
+    {
+        //
+    }
+
+    #=============================== STORE
+    public function store(Request $request)
+    {
+        //
+    }
+
+    #=============================== SHOW
+    public function show(string $id)
+    {
+        //
+    }
+
+    #=============================== EDIT
+    public function edit(string $id)
+    {
+        //
+    }
+
+    #=============================== UPDATE
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    #=============================== DELETE
+    public function destroy(string $id)
+    {
+        //
+    }
+}
