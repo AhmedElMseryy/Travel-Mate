@@ -63,6 +63,17 @@
                                 <button style="background-color: #ff1654c4;" class="btn btn-primary d-grid w-100"
                                     type="submit">Sign in</button>
                             </div>
+
+                            <!-- Google Sign In Button -->
+                            <div class="mb-3">
+                                <a href="{{ route('socialite.login') }}"
+                                    class="btn btn-light border d-flex align-items-center justify-content-center">
+                                    <img src="{{ asset('assets-front-auth/assets/img/favicon/google.png') }}" alt="#"
+                                        style="width: 18px; margin-right: 8px;">
+                                    Sign in with Google
+                                </a>
+                            </div>
+
                         </form>
                         <!-- ******************** END FORM ******************** -->
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\SocialiteController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -24,8 +25,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 // Route::middleware('localeSessionRedirect', 'localizationRedirect', 'localeViewPath')->prefix(LaravelLocalization::setLocale())->group(function () {
 //     Route::view('/', 'admin.index');
 // });
-// Route::get('/', function () {
-//     return view('front_auth.login');
+// Route::get('/llogin', function () {
+//     return view('front_auth.llogin');
 // });
 
 
@@ -55,6 +56,13 @@ Route::name('front.')->controller(FrontController::class)->group(function () {
     Route::get('/contact', 'contact')->name('contact');
 });
 require __DIR__ . '/auth.php';
+#--------------------------------------------------------------------------
+#--------------------------- LARAVEL SOCIALITE ----------------------------
+#--------------------------------------------------------------------------
+Route::prefix('google')->name('socialite.')->controller(SocialiteController::class)->group(function () {
+    Route::get('login', 'login')->name('login');
+    Route::get('redirect', 'redirect')->name('redirect');
+});
 
 
 #--------------------------------------------------------------------------
