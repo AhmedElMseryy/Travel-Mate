@@ -54,6 +54,6 @@ class ReservationController extends Controller
     public function destroy(Reservation $reservation)
     {
         $reservation->delete();
-        return to_route('admin.reservations.index')->with('delete_success', 'Deleted Successfully');
+        return to_route('reservations.index')->with('delete_success', 'Deleted Successfully');
     }
 }

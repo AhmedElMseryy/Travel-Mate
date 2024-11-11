@@ -20,6 +20,7 @@ class User extends Authenticatable
      */
     protected $guarded = [];
 
+    ##----------------------------RELATIONS
     public function reservations(): HasMany
     {
         return $this->hasMany(Reservation::class);

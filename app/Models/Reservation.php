@@ -13,6 +13,7 @@ class Reservation extends Model
     protected $table = 'reservations';
     protected $guarded = ['id'];
 
+    ##---------------------------RELATIONSHIPS
     public function destination(): BelongsTo
     {
         return $this->belongsTo(Destination::class);

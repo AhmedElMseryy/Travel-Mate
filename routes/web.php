@@ -56,6 +56,7 @@ Route::name('front.')->controller(FrontController::class)->group(function () {
     Route::get('/contact', 'contact')->name('contact');
 });
 require __DIR__ . '/auth.php';
+
 #--------------------------------------------------------------------------
 #--------------------------- LARAVEL SOCIALITE ----------------------------
 #--------------------------------------------------------------------------
