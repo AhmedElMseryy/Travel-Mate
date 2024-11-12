@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\DestinationController;
 use App\Http\Controllers\Api\GuideController;
 use App\Http\Controllers\Api\ReservationController;
+use App\Http\Controllers\Api\SearchDestinationController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\SubscriberController;
 use App\Http\Controllers\Api\UserController;
@@ -14,13 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+|--------------------------- API Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
 */
 
 
@@ -39,6 +35,9 @@ Route::get('/settings', SettingController::class);
 
 ##----------------------------- DESTINATIONS MODULE
 Route::get('/destinations', DestinationController::class);
+
+##----------------------------- SEARCH DESTINATIONS MODULE
+Route::get('/search', [SearchDestinationController::class, 'index']);
 
 ##----------------------------- RESERVATIONS MODULE
 Route::get('/reservations', ReservationController::class);

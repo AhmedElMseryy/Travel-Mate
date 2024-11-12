@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Helpers\ApiResponse;
-use App\Http\Resources\DestinationResource;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use App\Http\Helpers\ApiResponse;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\DestinationResource;
+use App\Http\Resources\SearchDestinationResource;
 
 class DestinationController extends Controller
 {

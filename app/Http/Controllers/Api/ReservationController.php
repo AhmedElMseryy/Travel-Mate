@@ -15,11 +15,13 @@ class ReservationController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $reservations = Reservation::where('destination_id', $request->input('destination_id'))->get();
-        // $reservations = Reservation::where([
-        //     'destination_id' => $request->input('destination_id'),
-        //     'user_id' => $request->input('user_id')
-        // ])->get();
+        // $reservations = Reservation::where('destination_id', $request->input('destination_id'))->get();
+        $reservations = Reservation::where([
+            'destination_id' => $request->input('destination_id'),
+            'user_id' => $request->input('user_id')
+        ])
+            // ->with(['user', 'destination'])  // تحميل العلاقة
+            ->get();
 
         if (count($reservations) > 0) {
             return ApiResponse::senResponse(200, 'Reservations Retrived successfully', ReservationResource::collection($reservations));
