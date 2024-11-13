@@ -4,6 +4,13 @@
              <h3 class="hny-title">Destinations</h3>
          </div>
 
+         <!-- ERROR MESSAGE IF USER ALREADY RESERVED SAME TRIP -->
+         @if (session('error'))
+             <div class="alert alert-danger">
+                 {{ session('error') }}
+             </div>
+         @endif
+
          <div class="row bottom-ab-grids">
              <!-- Foreach loop to generate cards -->
              @if (count($destinations) > 0)

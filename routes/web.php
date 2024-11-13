@@ -1,18 +1,19 @@
 <?php
 
 use App\Models\Reservation;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\AdminReservationController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\AdminReservationController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -107,6 +108,14 @@ Route::name('admin.')->prefix(LaravelLocalization::setLocale() . '/admin')->midd
         Route::controller(SettingController::class)->group(function () {
             Route::resource('settings', SettingController::class)->only(['index', 'update']);
         });
+        ##------------------------------------------------------- MARK ALL NOTIFICATIONS AS READ
+        Route::get('/notification/markasread', function () {
+            Auth::guard('admin')->user()->notifications->markAsRead();
+        })->name('notifications.read');
+        ##------------------------------------------------------- CLEAR ALL NOTIFICATIONS
+        Route::get('/notification/clear', function () {
+            Auth::guard('admin')->user()->notifications()->delete();
+        })->name('notifications.clear');
     });
     require __DIR__ . '/adminAuth.php';
 });

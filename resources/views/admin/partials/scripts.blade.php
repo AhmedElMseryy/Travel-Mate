@@ -213,3 +213,38 @@
     gtag('js', new Date());
     gtag('config', 'UA-56159088-1');
 </script>
+
+<script>
+    $("document").ready(function() {
+        // ====================================== MARK ALL NOTIFICATIONS AS READ
+        $(document).on('click', ".notificationsIcon", function() {
+            $.ajax({
+                url: {{ Illuminate\Support\Js::from(route('admin.notifications.read')) }},
+                method: 'get',
+                success: function(data) {
+                    $("#notificationsIconCounter").load(" #notificationsIconCounter > *");
+                    $("#notificationsModal").load(" #notificationsModal > *");
+                },
+                error: function() {
+                    alert('Please try again');
+                },
+            });
+        });
+
+        // ====================================== CLEAR ALL NOTIFICATIONS
+        $(document).on('click', "#clearNotifications", function() {
+            $.ajax({
+                url: {{ Illuminate\Support\Js::from(route('admin.notifications.clear')) }},
+                method: 'get',
+                success: function(data) {
+                    $("#notificationsIconCounter").load(" #notificationsIconCounter > *");
+                    $("#notificationsModal").load(" #notificationsModal > *");
+                },
+                error: function() {
+                    alert('Please try again');
+                },
+            });
+        });
+
+    });
+</script>

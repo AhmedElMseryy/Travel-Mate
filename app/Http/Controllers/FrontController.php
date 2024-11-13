@@ -8,6 +8,8 @@ use App\Models\Destination;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\StoreSubscriberRequest;
+use App\Models\Admin;
+use App\Notifications\NewUserReservationNotification;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class FrontController extends Controller
@@ -43,6 +45,11 @@ class FrontController extends Controller
         $destination_id = $request->destination_id;
         $destination = Destination::find($destination_id);
         // dd($destination);
+
+        ##--- send notification to admin
+        // $admin = Admin::find(2);
+        // $admin->notify(new NewUserReservationNotification($destination));
+
         return view('front.reservation-submit', get_defined_vars());
     }
 

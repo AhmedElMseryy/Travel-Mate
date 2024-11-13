@@ -11,7 +11,8 @@ class Reservation extends Model
     use HasFactory;
 
     protected $table = 'reservations';
-    protected $guarded = ['id'];
+    // protected $guarded = ['id'];
+    protected $fillable = ['user_id', 'destination_id'];
 
     ##---------------------------RELATIONSHIPS
     public function destination(): BelongsTo
@@ -19,7 +20,7 @@ class Reservation extends Model
         return $this->belongsTo(Destination::class);
     }
 
-    public function users(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

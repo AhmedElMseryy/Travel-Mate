@@ -23,25 +23,39 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <div class="list-group list-group-flush my-n3">
-                                <div class="list-group-item bg-transparent">
-                                    <div class="row align-items-center">
-                                        <div class="col-auto">
-                                            <span class="fe fe-box fe-24"></span>
-                                        </div>
-                                        <div class="col">
-                                            <small><strong>Package has uploaded successfull</strong></small>
-                                            <div class="my-0 text-muted small">Package is zipped and uploaded</div>
-                                            <small class="badge badge-pill badge-light text-muted">1m ago</small>
-                                        </div>
-                                    </div>
-                                </div>
 
-                            </div> <!-- / .list-group -->
+                        <!--********** NOTIFICATIONS BODY **********-->
+                        <div class="modal-body" id="notificationsModal">
+                            @if (count(Auth::guard('admin')->user()->notifications) > 0)
+                                <div class="list-group list-group-flush my-n3">
+
+                                    @foreach (Auth::guard('admin')->user()->notifications->take(5) as $notification)
+                                        <div
+                                            class="list-group-item @if ($notification->unread()) bg-light @else bg-transparent @endif">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <span class="fe fe-box fe-24"></span>
+                                                </div>
+                                                <div class="col">
+                                                    <small><strong>New User Reservation</strong></small>
+                                                    <div class="my-0 text-muted small">
+                                                        {{ $notification->data['message'] }}
+                                                    </div>
+                                                    <small
+                                                        class="badge badge-pill badge-light text-muted">{{ $notification->created_at->diffForHumans() }}</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div> <!-- / .list-group -->
+                            @endif
                         </div>
+                        <!--********** END NOTIFICATIONS BODY **********-->
+
+
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Clear
+                            <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal"
+                                id="clearNotifications">Clear
                                 All</button>
                         </div>
                     </div>

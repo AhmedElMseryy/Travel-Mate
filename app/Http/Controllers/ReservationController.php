@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
-use App\Http\Requests\StoreReservationRequest;
-use App\Http\Requests\UpdateReservationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
+use App\Http\Requests\StoreReservationRequest;
+use App\Http\Requests\UpdateReservationRequest;
+use App\Models\Admin;
+use App\Notifications\NewUserReservationNotification;
+use Illuminate\Support\Facades\Notification;
 
 class ReservationController extends Controller
 {
@@ -25,9 +28,27 @@ class ReservationController extends Controller
     #=============================== STORE
     public function store(StoreReservationRequest $request)
     {
-        // dd($data);
         $data = $request->validated();
-        Reservation::create($data);
+
+        // التحقق مما إذا كان الحجز موجودًا بالفعل
+        $existingReservation = Reservation::where('user_id', $data['user_id'])
+            ->where('destination_id', $data['destination_id'])
+            ->first();
+
+        if ($existingReservation) {
+            // إعادة توجيه مع رسالة خطأ
+            return to_route('front.destination')->with('error', 'You have already reserved this trip.');
+        }
+
+        // إذا لم يكن هناك حجز سابق، قم بإنشاء الحجز الجديد
+        $reservation = Reservation::create($data);
+
+        // إرسال الإشعار إلى المدير
+        $admin = Admin::find(2);
+        if ($admin) {
+            Notification::send($admin, new NewUserReservationNotification($reservation));
+            // $admin->notify(new NewUserReservationNotification($reservation));
+        }
 
         return to_route('reservations.index');
     }
