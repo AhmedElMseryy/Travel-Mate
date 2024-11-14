@@ -214,7 +214,8 @@
     gtag('config', 'UA-56159088-1');
 </script>
 
-<script>
+<!--**************** NOTIFICATIONS ******************-->
+{{-- <script>
     $("document").ready(function() {
         // ====================================== MARK ALL NOTIFICATIONS AS READ
         $(document).on('click', ".notificationsIcon", function() {
@@ -247,4 +248,4 @@
         });
 
     });
-</script>
+</script> --}}

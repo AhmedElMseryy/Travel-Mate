@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewUserReservationEvent;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -44,10 +45,15 @@ class ReservationController extends Controller
         $reservation = Reservation::create($data);
 
         // إرسال الإشعار إلى المدير
+        ##------------------------------SEND NOTIFICATIONS
         $admin = Admin::find(2);
         if ($admin) {
+            ##---------SAVE NOTIFICATIONS
             Notification::send($admin, new NewUserReservationNotification($reservation));
             // $admin->notify(new NewUserReservationNotification($reservation));
+
+            ##---------BROADCAST EVENT
+            NewUserReservationEvent::dispatch($reservation);
         }
 
         return to_route('reservations.index');

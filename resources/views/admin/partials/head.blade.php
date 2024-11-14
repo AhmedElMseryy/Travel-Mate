@@ -29,4 +29,30 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="{{ asset($dir) }}/css/app-light.css" id="lightTheme">
     <link rel="stylesheet" href="{{ asset($dir) }}/css/app-dark.css" id="darkTheme" disabled>
+
+
+    <!--********************* RECIVER NOTIFICATIONS WITH PUSHER **********************-->
+    {{-- <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = false;
+
+        var pusher = new Pusher("{{ env('PUSHER_APP_KEY') }}", {
+            cluster: 'mt1'
+        });
+
+        var channel = pusher.subscribe('new-user-channel');
+        channel.bind('App\\Events\\NewUserReservationEvent', function(data) {
+            console.log(data['message']);
+            $(".notificationsIcon").load(".notificationsIcon > *");
+            $("#notificationsModal").load("#notificationsModal > *");
+        });
+    </script> --}}
+
+
+
+    <!--********************* RECIVER NOTIFICATIONS WITH LARAVEL ECHO **********************-->
+    @vite('resources/js/app.js')
+
+
 </head>

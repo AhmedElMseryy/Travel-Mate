@@ -16,15 +16,18 @@
             </a>
         </li>
 
-
+        <!------------------------- NOTIFICATIONS -->
         <li class="nav-item nav-notif">
             <a class="nav-link text-muted my-2 notificationsIcon" href="./#" data-toggle="modal"
                 data-target=".modal-notif">
                 <span class="fe fe-bell fe-16"></span>
-                <span class="dot dot-md text-danger"
-                    id="notificationsIconCounter">{{ count(Auth::guard('admin')->user()->unreadnotifications) }}</span>
+                <span class="dot dot-md text-danger" id="notificationsIconCounter">
+                    {{ count(Auth::guard('admin')->user()->unreadnotifications) }}
+                </span>
             </a>
         </li>
+        <!------------------------- END NOTIFICATIONS -->
+
 
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink"
@@ -34,6 +37,8 @@
                         class="avatar-img rounded-circle">
                 </span>
             </a>
+
+            <!---------------- LOGOUT -->
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">{{ __('keywords.profile') }}</a>
                 <form method="POST" action="{{ route('admin.logout') }}">
@@ -41,6 +46,7 @@
                     <button type="submit" class="dropdown-item text-danger">{{ __('keywords.logout') }}</button>
                 </form>
             </div>
+            <!---------------- END LOGOUT -->
         </li>
     </ul>
 </nav>
